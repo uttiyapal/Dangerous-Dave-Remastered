@@ -7,6 +7,38 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dovo2"]
 size = Vector2(10, 14)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmlin"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h17s1"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(112, 160, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_je7p5"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(160, 160, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm80t"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(16, 160, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gx1jg"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(64, 160, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugbui"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(16, 544, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcs02"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(64, 544, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myrg7"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(112, 544, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_lvxji"]
 atlas = ExtResource("3_gmlin")
 region = Rect2(16, 112, 16, 16)
@@ -35,6 +67,45 @@ region = Rect2(256, 112, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_gmlin")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h17s1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_je7p5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fm80t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gx1jg")
+}],
+"loop": false,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_ugbui")
+}, {
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_fcs02")
+}, {
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_myrg7")
+}],
+"loop": false,
+"name": &"Shoot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_lvxji")
 }, {
 "duration": 1.0,
@@ -53,7 +124,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_5gtgg")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"Walk",
 "speed": 5.0
 }]
 
@@ -70,9 +141,7 @@ shape = SubResource("RectangleShape2D_dovo2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=25982794]
 scale = Vector2(0.84, 1)
 sprite_frames = SubResource("SpriteFrames_gmlin")
-animation = &"Idle"
-frame = 5
-frame_progress = 0.072365545
+animation = &"Shoot"
 
 [node name="BulletSpawn" type="Marker2D" parent="." unique_id=2093894540]
 position = Vector2(5, 0)
@@ -83,3 +152,5 @@ position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
 [node name="GroundCheck" type="RayCast2D" parent="." unique_id=636658453]
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

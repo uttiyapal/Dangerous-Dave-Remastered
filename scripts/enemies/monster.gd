@@ -6,6 +6,9 @@ extends CharacterBody2D
 
 @onready var bullet_spawn = $BulletSpawn
 @onready var shoot_timer = $ShootTimer
+@export var max_health := 1
+
+var health := 1
 
 var direction := 1
 var start_x := 0.0
@@ -17,6 +20,7 @@ func _ready():
 
 	sprite.play("Walk")
 	start_x = global_position.x
+	health = max_health
 	shoot_timer.timeout.connect(_shoot)
 
 func _shoot():
@@ -48,3 +52,20 @@ func _physics_process(_delta):
 		direction = -1
 
 	sprite.flip_h = direction < 0
+
+func take_damage(amount: int):
+
+	health -= amount
+	if health <= 0:
+		die()
+
+func die():
+
+	GameManager.add_score(100)
+	queue_free()
+
+
+func _on_hurt_box_body_entered(body):
+	if body.is_in_group("Player"):
+		body.die()
+		die()

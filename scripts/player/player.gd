@@ -2,16 +2,21 @@ extends CharacterBody2D
 
 signal player_died
 
+var is_shooting := false
+var bullet_spawn_offset := 10.0
 const SPEED := 100.0
 const JUMP_FORCE := -250.0
 const GRAVITY := 980.0
 var facing_right := true
 
 @export var bullet_scene: PackedScene
-
+@onready var sprite = $AnimatedSprite2D
 @onready var bullet_spawn = $BulletSpawn
 
 var active_bullet: Node = null
+
+func _ready():
+	bullet_spawn_offset = abs(bullet_spawn.position.x)
 
 func _physics_process(delta):
 
@@ -25,9 +30,13 @@ func _physics_process(delta):
 	
 	if direction > 0:
 		facing_right = true
+		sprite.flip_h = false
+		bullet_spawn.position.x = abs(bullet_spawn_offset)
 
-	if direction < 0:
+	elif direction < 0:
 		facing_right = false
+		sprite.flip_h = true
+		bullet_spawn.position.x = -abs(bullet_spawn_offset)
 
 	# Jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -35,8 +44,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("confirm"):
-		damage_player()
+	update_animation()
 	
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
@@ -88,7 +96,10 @@ func shoot():
 
 	if active_bullet:
 		return
-
+	
+	is_shooting = true
+	sprite.play("Shoot")
+	
 	active_bullet = bullet_scene.instantiate()
 
 	get_parent().add_child(active_bullet)
@@ -105,11 +116,20 @@ func shoot():
 func _on_bullet_destroyed():
 	active_bullet = null
 
+func update_animation():
+	if is_shooting:
+		return
+	
+	if !is_on_floor():
+		sprite.play("Jump")
 
-	
-	
-	
-	
-	
-	
-	
+	elif abs(velocity.x) > 0:
+		sprite.play("Walk")
+
+	else:
+		sprite.play("Idle")
+
+func _on_animated_sprite_2d_animation_finished():
+
+	if sprite.animation == "Shoot":
+		is_shooting = false

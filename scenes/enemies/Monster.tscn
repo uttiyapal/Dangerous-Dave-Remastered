@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://bqk08djayaeii" path="res://scripts/enemies/monster.gd" id="1_x7oef"]
 [ext_resource type="PackedScene" uid="uid://djvkex2urdhoj" path="res://scenes/bullets/EnemyBullet.tscn" id="2_vk31u"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vk31u"]
+radius = 8.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_x7oef"]
 atlas = ExtResource("1_huvl7")
 region = Rect2(64, 16, 16, 16)
@@ -43,11 +46,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b8lmm"]
 size = Vector2(16, 15)
 
-[node name="Monster" type="CharacterBody2D" unique_id=745266041]
+[node name="Monster" type="CharacterBody2D" unique_id=745266041 groups=["Monster"]]
 collision_layer = 2
 collision_mask = 32
 script = ExtResource("1_x7oef")
 bullet_scene = ExtResource("2_vk31u")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=78733379]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1396141378]
+shape = SubResource("CircleShape2D_vk31u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=588973488]
 sprite_frames = SubResource("SpriteFrames_6w8qc")
@@ -73,3 +81,5 @@ position = Vector2(9, 0)
 [node name="ShootTimer" type="Timer" parent="." unique_id=2023045769]
 wait_time = 2.0
 autostart = true
+
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
