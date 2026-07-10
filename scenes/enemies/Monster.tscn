@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://buuuehvqo5oks"]
+
+[ext_resource type="Texture2D" uid="uid://je8gbsupmpop" path="res://assets/graphics/enemies/Spider_16x16.png" id="1_huvl7"]
+[ext_resource type="Script" uid="uid://bqk08djayaeii" path="res://scripts/enemies/monster.gd" id="1_x7oef"]
+[ext_resource type="PackedScene" uid="uid://djvkex2urdhoj" path="res://scenes/bullets/EnemyBullet.tscn" id="2_vk31u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7oef"]
+atlas = ExtResource("1_huvl7")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk31u"]
+atlas = ExtResource("1_huvl7")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3je3"]
+atlas = ExtResource("1_huvl7")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53jlx"]
+atlas = ExtResource("1_huvl7")
+region = Rect2(112, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6w8qc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7oef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk31u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3je3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53jlx")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8lmm"]
+size = Vector2(16, 15)
+
+[node name="Monster" type="CharacterBody2D" unique_id=745266041]
+collision_layer = 2
+collision_mask = 32
+script = ExtResource("1_x7oef")
+bullet_scene = ExtResource("2_vk31u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=588973488]
+sprite_frames = SubResource("SpriteFrames_6w8qc")
+animation = &"Walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1713701162]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_b8lmm")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1757326126]
+
+[node name="MarkerLeft" type="Marker2D" parent="." unique_id=1068829965]
+position = Vector2(-120, 0)
+
+[node name="MarkerRight" type="Marker2D" parent="." unique_id=2098900236]
+position = Vector2(120, 0)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1305347709]
+
+[node name="BulletSpawn" type="Marker2D" parent="." unique_id=1832553422]
+position = Vector2(9, 0)
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=2023045769]
+wait_time = 2.0
+autostart = true

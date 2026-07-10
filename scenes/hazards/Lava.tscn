@@ -43,6 +43,7 @@ animations = [{
 size = Vector2(16, 9)
 
 [node name="Lava" type="Area2D" unique_id=1726874747]
+collision_layer = 16
 script = ExtResource("1_3lqc7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=194181658]

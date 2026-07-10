@@ -1,33 +1,61 @@
 [gd_scene format=3 uid="uid://dm4s114l8bdw7"]
 
-[ext_resource type="Texture2D" uid="uid://d3gkmnc7mfrrb" path="res://assets/graphics/objects/Fire1.png" id="1_pbqf5"]
 [ext_resource type="Script" uid="uid://w7y2mimuntc8" path="res://scripts/hazards/fire.gd" id="1_y8fyu"]
-[ext_resource type="Texture2D" uid="uid://gemv2kq1gqya" path="res://assets/graphics/objects/Fire2.png" id="2_y8fyu"]
-[ext_resource type="Texture2D" uid="uid://qvx518vb66hw" path="res://assets/graphics/objects/Fire3.png" id="3_fhwfn"]
+[ext_resource type="Texture2D" uid="uid://bh3fnejkalbhe" path="res://assets/graphics/objects/Fire-03_16x16_Sheet.png" id="2_i5jjx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbqf5"]
+atlas = ExtResource("2_i5jjx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8fyu"]
+atlas = ExtResource("2_i5jjx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhwfn"]
+atlas = ExtResource("2_i5jjx")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63fp0"]
+atlas = ExtResource("2_i5jjx")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyx6g"]
+atlas = ExtResource("2_i5jjx")
+region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_63fp0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_pbqf5")
+"texture": SubResource("AtlasTexture_pbqf5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_y8fyu")
+"texture": SubResource("AtlasTexture_y8fyu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_fhwfn")
+"texture": SubResource("AtlasTexture_fhwfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63fp0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iyx6g")
 }],
 "loop": true,
 "name": &"Burn",
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5jjx"]
+size = Vector2(8, 16)
+
 [node name="Fire" type="Area2D" unique_id=317862174]
+collision_layer = 16
 script = ExtResource("1_y8fyu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=265067199]
 sprite_frames = SubResource("SpriteFrames_63fp0")
 animation = &"Burn"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=228113011]
-polygon = PackedVector2Array(-15, 12, -12, 10, -5, 11, -8, 6, -8, -1, -1, -10, 8, -1, 9, 7, 7, 11, 12, 11, 15, 14, 15, 16, -15, 16)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=354249679]
+shape = SubResource("RectangleShape2D_i5jjx")

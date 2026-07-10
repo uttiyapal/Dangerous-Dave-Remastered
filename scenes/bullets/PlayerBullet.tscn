@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bistbej13qpui"]
+
+[ext_resource type="Texture2D" uid="uid://c1otf46viweye" path="res://assets/graphics/objects/bullet.png" id="1_g64gn"]
+[ext_resource type="Script" uid="uid://dkxp7c6lad72j" path="res://scripts/bullets/player_bullet.gd" id="1_p7wmw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p7wmw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_g64gn")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2t78"]
+size = Vector2(23, 4)
+
+[node name="PlayerBullet" type="Area2D" unique_id=44562130]
+collision_layer = 4
+collision_mask = 34
+script = ExtResource("1_p7wmw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1189544426]
+sprite_frames = SubResource("SpriteFrames_p7wmw")
+animation = &"Idle"
+frame_progress = 0.48154646
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=34597083]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_g2t78")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=712556284]

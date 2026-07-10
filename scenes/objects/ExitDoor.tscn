@@ -7,6 +7,7 @@
 size = Vector2(14, 14)
 
 [node name="ExitDoor" type="Area2D" unique_id=1589347372]
+collision_layer = 128
 script = ExtResource("1_alsv6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=429510119]

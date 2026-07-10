@@ -1,35 +1,81 @@
 [gd_scene format=3 uid="uid://bqaxdcj1xuv27"]
 
 [ext_resource type="Script" uid="uid://b84d6m4lbtkou" path="res://scripts/player/player.gd" id="1_8afob"]
-[ext_resource type="Texture2D" uid="uid://dkqnqg43c7xy0" path="res://assets/graphics/characters/Idle (1).png" id="2_dovo2"]
+[ext_resource type="PackedScene" uid="uid://bistbej13qpui" path="res://scenes/bullets/PlayerBullet.tscn" id="2_gmlin"]
+[ext_resource type="Texture2D" uid="uid://yckmrbsic0ti" path="res://assets/graphics/characters/Adventure_Character_Simple.png" id="3_gmlin"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dovo2"]
-size = Vector2(5.5, 13.75)
+size = Vector2(10, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvxji"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(16, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p47bc"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(64, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75vfm"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(112, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0owmy"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(160, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qek5x"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(208, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gtgg"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(256, 112, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gmlin"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_dovo2")
+"texture": SubResource("AtlasTexture_lvxji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p47bc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75vfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0owmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qek5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gtgg")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Idle",
 "speed": 5.0
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=1822515264 groups=["Player"]]
+collision_mask = 32
 script = ExtResource("1_8afob")
+bullet_scene = ExtResource("2_gmlin")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1903091020]
+position = Vector2(1.509958e-07, -1)
 rotation = -3.1415925
 shape = SubResource("RectangleShape2D_dovo2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=25982794]
-position = Vector2(-2, -1.0000019)
-scale = Vector2(0.033, 0.035)
+scale = Vector2(0.84, 1)
 sprite_frames = SubResource("SpriteFrames_gmlin")
+animation = &"Idle"
+frame = 5
+frame_progress = 0.072365545
 
-[node name="GunMarker" type="Marker2D" parent="." unique_id=2093894540]
+[node name="BulletSpawn" type="Marker2D" parent="." unique_id=2093894540]
+position = Vector2(5, 0)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=393331827]
 zoom = Vector2(5, 5)

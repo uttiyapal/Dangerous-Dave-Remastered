@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://djvkex2urdhoj"]
+
+[ext_resource type="Script" uid="uid://c34ffumv5ldle" path="res://scripts/bullets/enemy_bullet.gd" id="1_n8fy3"]
+[ext_resource type="Texture2D" uid="uid://c1otf46viweye" path="res://assets/graphics/objects/bullet.png" id="1_y0k0h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n8fy3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_y0k0h")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0k0h"]
+size = Vector2(23, 4)
+
+[node name="EnemyBullet" type="Area2D" unique_id=1599474559]
+collision_layer = 8
+collision_mask = 33
+script = ExtResource("1_n8fy3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1186017340]
+sprite_frames = SubResource("SpriteFrames_n8fy3")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=600076266]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_y0k0h")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1886348342]

@@ -7,7 +7,8 @@ var current_level_instance : Node = null
 
 var levels = [
 	"res://scenes/levels/Level01.tscn",
-	"res://scenes/levels/Level02.tscn"
+	"res://scenes/levels/Level02.tscn",
+	"res://scenes/levels/Level03.tscn"
 ]
 
 var current_level_index = 0

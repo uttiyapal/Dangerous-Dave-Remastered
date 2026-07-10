@@ -219,6 +219,7 @@ size = Vector2(46, 18)
 
 [node name="Gun" type="Area2D" unique_id=1994237845]
 scale = Vector2(0.3, 0.3)
+collision_layer = 128
 script = ExtResource("1_r7lkw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1734049907]
