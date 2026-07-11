@@ -1,7 +1,9 @@
 extends Node
 
+@onready var background_music = $BackgroundMusic
 @onready var current_level = $CurrentLevel
 @onready var player = $Player
+@onready var pickup_sound = $PickupSound
 
 var current_level_instance : Node = null
 
@@ -14,6 +16,7 @@ var levels = [
 var current_level_index = 0
 
 func _ready():
+	background_music.play()
 	player.player_died.connect(_on_player_died)
 	load_level(levels[current_level_index])
 
@@ -62,3 +65,6 @@ func _on_player_died():
 	var spawn = current_level_instance.get_node("SpawnPoints/PlayerSpawn")
 
 	player.respawn(spawn.global_position)
+
+func play_pickup_sound():
+	pickup_sound.play()

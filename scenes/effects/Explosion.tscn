@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bv1ukc3824uy3" path="res://scripts/effects/explosion.gd" id="1_8y2n5"]
 [ext_resource type="Texture2D" uid="uid://de1xpkw0ompbg" path="res://assets/graphics/objects/Yellow Effect Bullet Impact Explosion 32x32.png" id="1_urivy"]
+[ext_resource type="AudioStream" uid="uid://ravmvpguot5a" path="res://assets/audio/explosion.ogg" id="3_gwe4o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8y2n5"]
 atlas = ExtResource("1_urivy")
@@ -63,3 +64,4 @@ frame = 5
 frame_progress = 1.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=339032067]
+stream = ExtResource("3_gwe4o")

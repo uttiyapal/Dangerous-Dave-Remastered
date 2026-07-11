@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://biwg40qw7iwv4" path="res://assets/graphics/objects/heart_full.png" id="4_uaf1y"]
 [ext_resource type="Texture2D" uid="uid://0ofgspghdjcj" path="res://assets/graphics/objects/jetpack_progress.png" id="5_iba00"]
 [ext_resource type="Texture2D" uid="uid://qws5c41ux2dt" path="res://assets/graphics/objects/gun_sprite.png" id="6_g38uy"]
+[ext_resource type="AudioStream" uid="uid://bn7ve4qgo6pjo" path="res://assets/audio/pickup.ogg" id="9_8aysu"]
+[ext_resource type="AudioStream" uid="uid://c62xdbk28yuys" path="res://assets/audio/bgm.ogg" id="10_mkoeh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8aysu"]
 bg_color = Color(0, 0, 0, 0.5882353)
@@ -135,3 +137,10 @@ value = 100.0
 texture_progress = ExtResource("5_iba00")
 
 [node name="PauseMenu" type="Node" parent="." unique_id=1207636030]
+
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="." unique_id=1022491610]
+stream = ExtResource("9_8aysu")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="." unique_id=1044049198]
+stream = ExtResource("10_mkoeh")
+autoplay = true

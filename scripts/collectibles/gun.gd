@@ -13,6 +13,6 @@ func _on_body_entered(body):
 
 	GameManager.has_gun = true
 
-	print("Gun collected!")
+	get_tree().current_scene.play_pickup_sound()
 
 	queue_free()

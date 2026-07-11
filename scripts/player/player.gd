@@ -16,6 +16,7 @@ var facing_right := true
 @onready var bullet_spawn = $BulletSpawn
 @onready var camera = $Camera2D
 @onready var jetpack_sound = $JetpackSound
+@onready var shoot_sound = $ShootSound
 
 var active_bullet: Node = null
 
@@ -149,6 +150,7 @@ func shoot():
 	
 	is_shooting = true
 	sprite.play("Shoot")
+	shoot_sound.play()
 	
 	active_bullet = bullet_scene.instantiate()
 
