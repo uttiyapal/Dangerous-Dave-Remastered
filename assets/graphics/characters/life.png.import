@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjar7xpgef2rb"
-path="res://.godot/imported/background_brickwall.jpg-b19431d8efbd74f40137ce5b674e69d2.ctex"
+uid="uid://deiytem4d260s"
+path="res://.godot/imported/life.png-2eb2cb2db3459e03c1b395066358ff6d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/backgrounds/background_brickwall.jpg"
-dest_files=["res://.godot/imported/background_brickwall.jpg-b19431d8efbd74f40137ce5b674e69d2.ctex"]
+source_file="res://assets/graphics/characters/life.png"
+dest_files=["res://.godot/imported/life.png-2eb2cb2db3459e03c1b395066358ff6d.ctex"]
 
 [params]
 

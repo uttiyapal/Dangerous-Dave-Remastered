@@ -3,15 +3,14 @@
 [ext_resource type="Script" uid="uid://bllqw3oc7ywvc" path="res://scripts/manager/main.gd" id="1_llaio"]
 [ext_resource type="PackedScene" uid="uid://bqaxdcj1xuv27" path="res://scenes/player/player.tscn" id="2_oekm8"]
 [ext_resource type="Script" uid="uid://dvet8woq3c65b" path="res://scripts/game/hud.gd" id="3_yd8kv"]
-[ext_resource type="Texture2D" uid="uid://dex5p0rna5gxa" path="res://assets/graphics/characters/dave_sprite.png" id="4_5v64u"]
 [ext_resource type="Texture2D" uid="uid://deye3o67gaddx" path="res://assets/graphics/objects/key.png" id="4_j7lav"]
 [ext_resource type="Texture2D" uid="uid://biwg40qw7iwv4" path="res://assets/graphics/objects/heart_full.png" id="4_uaf1y"]
 [ext_resource type="FontFile" uid="uid://b8dpjmdeio5fa" path="res://assets/fonts/ModernDOS8x16.ttf" id="4_valbs"]
 [ext_resource type="Texture2D" uid="uid://0ofgspghdjcj" path="res://assets/graphics/objects/jetpack_progress.png" id="5_iba00"]
+[ext_resource type="Texture2D" uid="uid://deiytem4d260s" path="res://assets/graphics/characters/life.png" id="5_mogw1"]
 [ext_resource type="Texture2D" uid="uid://qws5c41ux2dt" path="res://assets/graphics/objects/gun_sprite.png" id="6_g38uy"]
 [ext_resource type="AudioStream" uid="uid://bn7ve4qgo6pjo" path="res://assets/audio/pickup.ogg" id="9_8aysu"]
 [ext_resource type="AudioStream" uid="uid://c62xdbk28yuys" path="res://assets/audio/bgm.ogg" id="10_mkoeh"]
-[ext_resource type="PackedScene" uid="uid://cpolqckdb4yve" path="res://scenes/menus/PauseMenu.tscn" id="12_mogw1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8aysu"]
 bg_color = Color(0, 0, 0, 0.5882353)
@@ -22,6 +21,7 @@ border_width_bottom = 3
 border_color = Color(1, 1, 1, 1)
 
 [node name="Main" type="Node" unique_id=402348827]
+process_mode = 3
 script = ExtResource("1_llaio")
 
 [node name="CurrentLevel" type="Node2D" parent="." unique_id=1743230787]
@@ -58,27 +58,26 @@ text = "SCORE: 000000"
 
 [node name="LivesContainer" type="HBoxContainer" parent="HUD/TopBar" unique_id=347905148]
 layout_mode = 0
-offset_left = 200.0
-offset_top = 5.0
-offset_right = 352.0
-offset_bottom = 53.0
-scale = Vector2(1.5, 1.5)
+offset_left = 250.0
+offset_top = 12.0
+offset_right = 402.0
+offset_bottom = 60.0
 
 [node name="Life1" type="TextureRect" parent="HUD/TopBar/LivesContainer" unique_id=430760037]
 layout_mode = 2
-texture = ExtResource("4_5v64u")
+texture = ExtResource("5_mogw1")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="Life2" type="TextureRect" parent="HUD/TopBar/LivesContainer" unique_id=242139007]
 layout_mode = 2
-texture = ExtResource("4_5v64u")
+texture = ExtResource("5_mogw1")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="Life3" type="TextureRect" parent="HUD/TopBar/LivesContainer" unique_id=1284224820]
 layout_mode = 2
-texture = ExtResource("4_5v64u")
+texture = ExtResource("5_mogw1")
 expand_mode = 3
 stretch_mode = 5
 
@@ -147,6 +146,3 @@ stream = ExtResource("9_8aysu")
 stream = ExtResource("10_mkoeh")
 volume_db = -5.0
 autoplay = true
-
-[node name="PauseMenu" parent="." unique_id=688062632 instance=ExtResource("12_mogw1")]
-visible = false

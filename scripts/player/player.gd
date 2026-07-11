@@ -25,6 +25,9 @@ func _ready():
 
 func _physics_process(delta):
 
+	if get_tree().paused:
+		return
+	
 	# Check if the jetpack is being used
 	var using_jetpack = (
 		GameManager.has_jetpack

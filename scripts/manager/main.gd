@@ -3,7 +3,6 @@ extends Node
 @onready var background_music = $BackgroundMusic
 @onready var current_level = $CurrentLevel
 @onready var player = $Player
-@onready var pause_menu = $PauseMenu
 @onready var pickup_sound = $PickupSound
 
 var current_level_instance : Node = null
@@ -69,12 +68,3 @@ func _on_player_died():
 
 func play_pickup_sound():
 	pickup_sound.play()
-
-func _process(_delta):
-
-	if Input.is_action_just_pressed("pause"):
-
-		if pause_menu.visible:
-			pause_menu.hide()
-		else:
-			pause_menu.show()
