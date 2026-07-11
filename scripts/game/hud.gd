@@ -16,4 +16,7 @@ func _process(_delta):
 	GameManager.max_health
 	]
 	gun_label.text = "Gun: " + ("YES" if GameManager.has_gun else "NO")
-	jetpack_label.text = "Jetpack: " + ("YES" if GameManager.has_jetpack else "NO")
+	if GameManager.has_jetpack:
+		jetpack_label.text = "Jetpack: %d%%" % int(GameManager.jetpack_fuel)
+	else:
+		jetpack_label.text = "Jetpack: NO"

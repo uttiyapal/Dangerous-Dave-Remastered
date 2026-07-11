@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b84d6m4lbtkou" path="res://scripts/player/player.gd" id="1_8afob"]
 [ext_resource type="PackedScene" uid="uid://bistbej13qpui" path="res://scenes/bullets/PlayerBullet.tscn" id="2_gmlin"]
 [ext_resource type="Texture2D" uid="uid://yckmrbsic0ti" path="res://assets/graphics/characters/Adventure_Character_Simple.png" id="3_gmlin"]
+[ext_resource type="AudioStream" uid="uid://cvx7nrhcupm11" path="res://assets/audio/jetpack.ogg" id="4_lvxji"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dovo2"]
 size = Vector2(10, 14)
@@ -10,6 +11,18 @@ size = Vector2(10, 14)
 [sub_resource type="AtlasTexture" id="AtlasTexture_gmlin"]
 atlas = ExtResource("3_gmlin")
 region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvlxm"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(64, 496, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uf5tr"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(112, 496, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgqa7"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(160, 496, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h17s1"]
 atlas = ExtResource("3_gmlin")
@@ -72,6 +85,20 @@ animations = [{
 "loop": true,
 "name": &"Idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvlxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uf5tr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgqa7")
+}],
+"loop": true,
+"name": &"Jetpack",
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -141,7 +168,8 @@ shape = SubResource("RectangleShape2D_dovo2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=25982794]
 scale = Vector2(0.84, 1)
 sprite_frames = SubResource("SpriteFrames_gmlin")
-animation = &"Shoot"
+animation = &"Jetpack"
+frame_progress = 0.8643594
 
 [node name="BulletSpawn" type="Marker2D" parent="." unique_id=2093894540]
 position = Vector2(5, 0)
@@ -152,5 +180,9 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="GroundCheck" type="RayCast2D" parent="." unique_id=636658453]
+
+[node name="JetpackSound" type="AudioStreamPlayer2D" parent="." unique_id=1457205515]
+stream = ExtResource("4_lvxji")
+parameters/looping = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

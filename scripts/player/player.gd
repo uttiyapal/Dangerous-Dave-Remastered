@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal player_died
 
+const JETPACK_SPEED := 120.0
 var is_shooting := false
 var bullet_spawn_offset := 10.0
 const SPEED := 100.0
@@ -13,6 +14,7 @@ var facing_right := true
 @onready var sprite = $AnimatedSprite2D
 @onready var bullet_spawn = $BulletSpawn
 @onready var camera = $Camera2D
+@onready var jetpack_sound = $JetpackSound
 
 var active_bullet: Node = null
 
@@ -21,32 +23,78 @@ func _ready():
 
 func _physics_process(delta):
 
-	# Gravity
-	if !is_on_floor():
-		velocity.y += GRAVITY * delta
-
-	# Movement
-	var direction = Input.get_axis("move_left", "move_right")
-	velocity.x = direction * SPEED
+	# Check if the jetpack is being used
+	var using_jetpack = (
+		GameManager.has_jetpack
+		and Input.is_action_pressed("jetpack")
+		and GameManager.jetpack_fuel > 0
+	)
 	
-	if direction > 0:
-		facing_right = true
-		sprite.flip_h = false
-		bullet_spawn.position.x = abs(bullet_spawn_offset)
+	if using_jetpack:
+		if !jetpack_sound.playing:
+			jetpack_sound.play()
+	else:
+		if jetpack_sound.playing:
+			jetpack_sound.stop()
 
-	elif direction < 0:
-		facing_right = false
-		sprite.flip_h = true
-		bullet_spawn.position.x = -abs(bullet_spawn_offset)
+	if using_jetpack:
 
-	# Jump
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_FORCE
+		var fly_direction = Input.get_vector(
+			"move_left",
+			"move_right",
+			"move_up",
+			"move_down"
+		)
+
+		velocity = fly_direction * JETPACK_SPEED
+
+		# Consume fuel only while moving
+		if fly_direction != Vector2.ZERO:
+			GameManager.jetpack_fuel = max(
+				GameManager.jetpack_fuel - 20 * delta,
+				0
+			)
+
+		# Face the direction of flight
+		if fly_direction.x > 0:
+			facing_right = true
+			sprite.flip_h = false
+			bullet_spawn.position.x = abs(bullet_spawn_offset)
+
+		elif fly_direction.x < 0:
+			facing_right = false
+			sprite.flip_h = true
+			bullet_spawn.position.x = -abs(bullet_spawn_offset)
+
+	else:
+
+		# Gravity
+		if !is_on_floor():
+			velocity.y += GRAVITY * delta
+
+		# Horizontal movement
+		var move_direction = Input.get_axis("move_left", "move_right")
+		velocity.x = move_direction * SPEED
+
+		# Face the direction of movement
+		if move_direction > 0:
+			facing_right = true
+			sprite.flip_h = false
+			bullet_spawn.position.x = abs(bullet_spawn_offset)
+
+		elif move_direction < 0:
+			facing_right = false
+			sprite.flip_h = true
+			bullet_spawn.position.x = -abs(bullet_spawn_offset)
+
+		# Jump
+		if Input.is_action_just_pressed("jump") and is_on_floor():
+			velocity.y = JUMP_FORCE
 
 	move_and_slide()
-	
+
 	update_animation()
-	
+
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
 	
@@ -118,10 +166,20 @@ func _on_bullet_destroyed():
 	active_bullet = null
 
 func update_animation():
+
 	if is_shooting:
 		return
-	
-	if !is_on_floor():
+
+	var using_jetpack = (
+		GameManager.has_jetpack
+		and Input.is_action_pressed("jetpack")
+		and GameManager.jetpack_fuel > 0
+	)
+
+	if using_jetpack:
+		sprite.play("Jetpack")
+
+	elif !is_on_floor():
 		sprite.play("Jump")
 
 	elif abs(velocity.x) > 0:

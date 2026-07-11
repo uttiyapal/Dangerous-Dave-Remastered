@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dkyfhbwo75en5" path="res://scenes/collectibles/Gem.tscn" id="6_qnd2q"]
 [ext_resource type="PackedScene" uid="uid://cjajv6wu4ai4f" path="res://scenes/collectibles/Gun.tscn" id="7_vci13"]
 [ext_resource type="PackedScene" uid="uid://buuuehvqo5oks" path="res://scenes/enemies/Monster.tscn" id="8_vgpa5"]
+[ext_resource type="PackedScene" uid="uid://ckobobwjvxn7k" path="res://scenes/collectibles/Jetpack.tscn" id="9_emvoc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qulja"]
 texture = ExtResource("1_g8iut")
@@ -181,6 +182,9 @@ position = Vector2(156, 620)
 
 [node name="Monster" parent="Entities/Monsters" unique_id=745266041 instance=ExtResource("8_vgpa5")]
 position = Vector2(420, 619)
+
+[node name="Jetpack" parent="Entities" unique_id=1635749776 instance=ExtResource("9_emvoc")]
+position = Vector2(1064, 696)
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=497194717]
 
