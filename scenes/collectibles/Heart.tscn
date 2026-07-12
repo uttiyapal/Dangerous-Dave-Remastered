@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://bnbalavu6r75y"]
+
+[ext_resource type="Script" uid="uid://dnygrfvjbp3kq" path="res://scripts/collectibles/heart.gd" id="1_4ajha"]
+[ext_resource type="Texture2D" uid="uid://chnse8sjwtc51" path="res://assets/graphics/objects/HeartTiles/heart1.png" id="1_xfvkv"]
+[ext_resource type="Texture2D" uid="uid://bv4exgsn3dyqb" path="res://assets/graphics/objects/HeartTiles/heart2.png" id="2_4ajha"]
+[ext_resource type="Texture2D" uid="uid://b6a27eantbyqi" path="res://assets/graphics/objects/HeartTiles/heart3.png" id="3_lu01j"]
+[ext_resource type="Texture2D" uid="uid://bqjonfxkb7n3o" path="res://assets/graphics/objects/HeartTiles/heart4.png" id="4_xhggo"]
+[ext_resource type="Texture2D" uid="uid://bfwogkl7m7rqe" path="res://assets/graphics/objects/HeartTiles/heart5.png" id="5_4ixiv"]
+[ext_resource type="Texture2D" uid="uid://bryktcp33shsb" path="res://assets/graphics/objects/HeartTiles/heart6.png" id="6_v1ckd"]
+[ext_resource type="Texture2D" uid="uid://da37ucgtveb65" path="res://assets/graphics/objects/HeartTiles/heart7.png" id="7_jsid5"]
+[ext_resource type="Texture2D" uid="uid://crm64tvvmb5jp" path="res://assets/graphics/objects/HeartTiles/heart8.png" id="8_04ll2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mbfjm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xfvkv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4ajha")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lu01j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xhggo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4ixiv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_v1ckd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jsid5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_04ll2")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e2k6i"]
+radius = 8.0
+
+[node name="Heart" type="Area2D" unique_id=1298033791]
+light_mask = 64
+script = ExtResource("1_4ajha")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=629895115]
+sprite_frames = SubResource("SpriteFrames_mbfjm")
+animation = &"Idle"
+frame = 7
+frame_progress = 0.5273158
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=841149412]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_e2k6i")

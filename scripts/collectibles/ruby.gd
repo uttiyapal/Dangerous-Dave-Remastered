@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var score_value := 250
+@export var score_value := 150
 @onready var sprite = $AnimatedSprite2D
 
 func _ready():

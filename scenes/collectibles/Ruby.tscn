@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://cjklxlr0ncc5c"]
+
+[ext_resource type="Texture2D" uid="uid://b80t5mt4krpuy" path="res://assets/graphics/objects/ruby.png" id="1_1cjsi"]
+[ext_resource type="Script" uid="uid://b7bu6tfhma5ar" path="res://scripts/collectibles/ruby.gd" id="1_y6kol"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6kol"]
+atlas = ExtResource("1_1cjsi")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqy6r"]
+atlas = ExtResource("1_1cjsi")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o28dw"]
+atlas = ExtResource("1_1cjsi")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajsd0"]
+atlas = ExtResource("1_1cjsi")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dndbd"]
+atlas = ExtResource("1_1cjsi")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gatne"]
+atlas = ExtResource("1_1cjsi")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qkjx"]
+atlas = ExtResource("1_1cjsi")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2x11t"]
+atlas = ExtResource("1_1cjsi")
+region = Rect2(0, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gocg0"]
+atlas = ExtResource("1_1cjsi")
+region = Rect2(0, 128, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y6kol"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6kol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqy6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o28dw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajsd0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dndbd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gatne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qkjx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2x11t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gocg0")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6ul4l"]
+radius = 4.0
+height = 12.0
+
+[node name="Ruby" type="Area2D" unique_id=234548664]
+collision_layer = 64
+script = ExtResource("1_y6kol")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1355906463]
+sprite_frames = SubResource("SpriteFrames_y6kol")
+animation = &"Idle"
+frame = 5
+frame_progress = 0.28823903
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=684897298]
+shape = SubResource("CapsuleShape2D_6ul4l")

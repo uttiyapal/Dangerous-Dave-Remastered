@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://ys2oxsjgvpar"]
+
+[ext_resource type="Texture2D" uid="uid://uscx8s0flyfx" path="res://assets/graphics/objects/emerald.png" id="1_nn7j8"]
+[ext_resource type="Script" uid="uid://cbihqw1wm74f7" path="res://scripts/collectibles/emerald.gd" id="1_qkopd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkopd"]
+atlas = ExtResource("1_nn7j8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iygko"]
+atlas = ExtResource("1_nn7j8")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vu5f"]
+atlas = ExtResource("1_nn7j8")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3kl5"]
+atlas = ExtResource("1_nn7j8")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6mi5"]
+atlas = ExtResource("1_nn7j8")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjb1h"]
+atlas = ExtResource("1_nn7j8")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_740pt"]
+atlas = ExtResource("1_nn7j8")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kq7rm"]
+atlas = ExtResource("1_nn7j8")
+region = Rect2(0, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvd7b"]
+atlas = ExtResource("1_nn7j8")
+region = Rect2(0, 128, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qkopd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkopd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iygko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vu5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3kl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6mi5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjb1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_740pt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kq7rm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvd7b")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iygko"]
+radius = 6.0
+
+[node name="Emerald" type="Area2D" unique_id=1624458890]
+collision_layer = 64
+script = ExtResource("1_qkopd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=574113369]
+sprite_frames = SubResource("SpriteFrames_qkopd")
+animation = &"Idle"
+frame = 6
+frame_progress = 0.2984967
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1841414331]
+shape = SubResource("CircleShape2D_iygko")

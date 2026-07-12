@@ -2,6 +2,97 @@
 
 [ext_resource type="Script" uid="uid://v4h03bm5syfb" path="res://scripts/ui/main_menu.gd" id="1_wlpbi"]
 [ext_resource type="FontFile" uid="uid://b8dpjmdeio5fa" path="res://assets/fonts/ModernDOS8x16.ttf" id="2_bqojv"]
+[ext_resource type="Texture2D" uid="uid://yi35mrvhd14w" path="res://assets/graphics/objects/Lava_frames (16 x 32).png" id="2_ldf1p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyyoy"]
+atlas = ExtResource("2_ldf1p")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0il0"]
+atlas = ExtResource("2_ldf1p")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cty7a"]
+atlas = ExtResource("2_ldf1p")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_147xw"]
+atlas = ExtResource("2_ldf1p")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bqojv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyyoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0il0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cty7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_147xw")
+}],
+"loop": true,
+"name": &"Burn",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_hwog6"]
+resource_name = "FadeIn"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lkswk"]
+resource_name = "FadeOut"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ckq83"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ldf1p"]
+_data = {
+&"FadeIn": SubResource("Animation_hwog6"),
+&"FadeOut": SubResource("Animation_lkswk"),
+&"RESET": SubResource("Animation_ckq83")
+}
 
 [node name="MainMenu" type="Control" unique_id=1080318438]
 layout_mode = 3
@@ -12,6 +103,33 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wlpbi")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=370558882]
+position = Vector2(163.25, 360.49997)
+scale = Vector2(20, 22.559)
+sprite_frames = SubResource("SpriteFrames_bqojv")
+animation = &"Burn"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=628713245]
+position = Vector2(483, 360.99997)
+scale = Vector2(20, 22.559)
+sprite_frames = SubResource("SpriteFrames_bqojv")
+animation = &"Burn"
+frame = 1
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="." unique_id=647708074]
+position = Vector2(803, 360.99997)
+scale = Vector2(20, 22.559)
+sprite_frames = SubResource("SpriteFrames_bqojv")
+animation = &"Burn"
+frame = 2
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="." unique_id=58934299]
+position = Vector2(1121, 361)
+scale = Vector2(20, 22.559)
+sprite_frames = SubResource("SpriteFrames_bqojv")
+animation = &"Burn"
+frame = 3
+
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1960571221]
 layout_mode = 1
 anchors_preset = 15
@@ -19,7 +137,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.09803922, 0.09803922, 0.15686275, 1)
+color = Color(0.09803922, 0.09803922, 0.15686275, 0.5882353)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2046955036]
 layout_mode = 1
@@ -42,9 +160,9 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.9019608, 0.3529412, 1)
 theme_override_fonts/font = ExtResource("2_bqojv")
 theme_override_font_sizes/font_size = 64
-text = "/ --------------------- \\
-|     DUNGEON CRAWLER     |
-\\ --------------------- /"
+text = " --------------------- 
+|  DUNGEON CRAWLER  |
+ --------------------- "
 horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="VBoxContainer" unique_id=953807146]
@@ -120,10 +238,11 @@ Shoot: Left Mouse Button
 Jetpack: Left Ctrl (Hold)
 
 Objective:
-• Collect gems,coins for points.
-• Pick up the key to unlock the exit.
-• Find the gun to defeat monsters.
-• Find the jetpack to reach difficult areas.
+• Collect gems, coins for points, and hearts for health.
+• For every 3 damage to health, player loses a life.
+• Pick up the key to unlock the exit door.
+• Fire the gun to defeat monsters.
+• Use the jetpack to reach difficult areas.
 • Avoid monsters, fire and lava.
 • Reach the exit door to complete each level.
 "
@@ -134,6 +253,22 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_bqojv")
 theme_override_font_sizes/font_size = 25
 text = "[ BACK ]"
+
+[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1515841875]
+process_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="TransitionLayer" unique_id=1178798662]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TransitionLayer" unique_id=1119911964]
+libraries/ = SubResource("AnimationLibrary_ldf1p")
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HowToButton" to="." method="_on_how_to_button_pressed"]

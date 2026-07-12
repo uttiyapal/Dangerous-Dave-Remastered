@@ -12,6 +12,9 @@ const JUMP_FORCE := -250.0
 const GRAVITY := 980.0
 var facing_right := true
 
+var is_invincible := false
+const INVINCIBILITY_DURATION := 1.0
+
 @export var bullet_scene: PackedScene
 @onready var sprite = $AnimatedSprite2D
 @onready var bullet_spawn = $BulletSpawn
@@ -105,7 +108,8 @@ func _physics_process(delta):
 		shoot()
 	
 func damage_player():
-
+	
+	add_shake(3.0)
 	GameManager.health -= 1
 
 	print("Player took damage!")
@@ -115,16 +119,27 @@ func damage_player():
 		die()
 
 func take_damage(amount: int):
+	if is_invincible:
+		return
 
+	is_invincible = true
+	
 	for i in amount:
 		damage_player()
+	
+	await get_tree().create_timer(INVINCIBILITY_DURATION).timeout
+	is_invincible = false
 
 func die():
 
-	print("Player died!")
+	add_shake(6.0)
+	
+	if is_invincible:
+		return
+
+	is_invincible = true
 
 	GameManager.lives -= 1
-
 	GameManager.health = GameManager.max_health
 
 	if GameManager.lives <= 0:
@@ -136,10 +151,11 @@ func die():
 		return
 
 	player_died.emit()
+	
+	await get_tree().create_timer(INVINCIBILITY_DURATION).timeout
+	is_invincible = false
 
 func respawn(spawn_position: Vector2):
-
-	print("Respawning player.")
 
 	global_position = spawn_position
 	velocity = Vector2.ZERO
@@ -219,3 +235,19 @@ func play_hurt():
 
 	is_hurt = true
 	sprite.play("Hurt")
+
+var shake_strength := 0.0
+const SHAKE_DECAY := 5.0
+
+func _process(delta):
+	if shake_strength > 0:
+		shake_strength = max(shake_strength - SHAKE_DECAY * delta, 0)
+		camera.offset = Vector2(
+			randf_range(-1, 1) * shake_strength,
+			randf_range(-1, 1) * shake_strength
+		)
+	else:
+		camera.offset = Vector2.ZERO
+
+func add_shake(amount: float):
+	shake_strength = min(shake_strength + amount, 16.0)
