@@ -112,11 +112,8 @@ func damage_player():
 	add_shake(3.0)
 	GameManager.health -= 1
 
-	print("Player took damage!")
-	print("Health:", GameManager.health)
-	
 	if GameManager.health <= 0:
-		die()
+		_do_death()
 
 func take_damage(amount: int):
 	if is_invincible:
@@ -131,29 +128,29 @@ func take_damage(amount: int):
 	is_invincible = false
 
 func die():
-
-	add_shake(6.0)
-	
 	if is_invincible:
 		return
 
 	is_invincible = true
+	_do_death()
+
+	await get_tree().create_timer(INVINCIBILITY_DURATION).timeout
+	is_invincible = false
+
+func _do_death():
+	add_shake(6.0)
 
 	GameManager.lives -= 1
 	GameManager.health = GameManager.max_health
 
 	if GameManager.lives <= 0:
-
 		GameManager.lives = 0
-
 		game_over.emit()
-
 		return
 
 	player_died.emit()
 	
-	await get_tree().create_timer(INVINCIBILITY_DURATION).timeout
-	is_invincible = false
+	
 
 func respawn(spawn_position: Vector2):
 

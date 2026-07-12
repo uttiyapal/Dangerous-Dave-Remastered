@@ -26,8 +26,6 @@ func _ready():
 
 func _shoot():
 
-	print("Monster fired!")
-
 	var bullet = bullet_scene.instantiate()
 
 	get_parent().add_child(bullet)

@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dqml1hw3vvld0"]
 
 [ext_resource type="Script" uid="uid://dj17exsudiswv" path="res://scripts/objects/exit_door.gd" id="1_alsv6"]
-[ext_resource type="Texture2D" uid="uid://c5xiqq0s0ykvg" path="res://assets/graphics/objects/door.png" id="1_grocx"]
+[ext_resource type="Texture2D" uid="uid://3admgnrrj7lm" path="res://assets/graphics/objects/door.png" id="1_grocx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_alsv6"]
-size = Vector2(14, 14)
+size = Vector2(10, 14)
 
 [node name="ExitDoor" type="Area2D" unique_id=1589347372]
 collision_layer = 128
