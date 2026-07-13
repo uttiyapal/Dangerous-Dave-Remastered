@@ -11,7 +11,7 @@ func _on_body_entered(body):
 		return
 
 	if !GameManager.has_key:
-		print("The door is locked!")
+		get_tree().current_scene.show_message("This door is locked. Needs a key to open.")
 		return
 
 	level_completed.emit()

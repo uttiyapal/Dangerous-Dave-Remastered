@@ -99,3 +99,6 @@ func _on_game_over():
 	background_music.stop()
 	game_over.show()
 	game_over.set_score(GameManager.score)
+
+func show_message(text: String, duration: float = 2.0):
+	hud.show_message(text, duration)
