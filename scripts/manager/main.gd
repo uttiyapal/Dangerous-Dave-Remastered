@@ -19,7 +19,7 @@ var current_level_instance : Node = null
 #]
 
 var levels = [
-	"res://scenes/levels/level01.tscn"
+	"res://scenes/levels/level03.tscn"
 ]
 
 var current_level_index = 0
